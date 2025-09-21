@@ -3,9 +3,9 @@ import re
 import pandas as pd
 from pathlib import Path
 
-INPUT_XLSX = Path(r"C:\Users\Lenovo\Desktop\Final Thesis Script\Final Database.xlsx")   # update if needed
+INPUT_XLSX = Path(r"C:\Users\Lenovo\Desktop\Final Thesis Script\Final Database.xlsx")
 SHEET_NAME = "Sheet1"
-OUTPUT_CSV = Path(r"C:\Users\Lenovo\Desktop\Final Thesis Script\experiment3.csv")
+OUTPUT_CSV = Path(r"C:\Users\Lenovo\Desktop\Final Thesis Script\Final Dataset.csv")
 
 ING_COL   = "Ingredients list"
 CODE_COL  = "Product Code"
@@ -33,7 +33,6 @@ EMULSIFIERS = {
 }
 
 # E-number handling 
-# Matches: E330, e-330, E 330, E1105, E160b, E407a, E160b(i), etc.
 E_REGEX_FULL = re.compile(
     r"\b[eE]\s*[-]?\s*(\d{3,4})\s*([a-zA-Z])?\s*(?:\(\s*[ivxlcdmIVXLCDM]+\s*\))?",
     flags=re.UNICODE
@@ -145,7 +144,7 @@ def main():
     num_additives   = df[ING_COL].apply(count_additives).astype(float)
     additives_per_ingredient = (num_additives / num_ingredients.replace(0, pd.NA)).fillna(0.0).astype(float)
 
-    # === Base output frame ===
+    # Base output frame
     out = pd.DataFrame({
         CODE_COL:   df.get(CODE_COL, pd.Series(range(len(df)))),
         TARGET_COL: df.get(TARGET_COL, pd.Series([None]*len(df))),
@@ -171,12 +170,12 @@ def main():
     out["has_allergen"] = df[ING_COL].apply(lambda t: any_kw(t, ALLERGEN_KEYWORDS))
     out["has_cardiovascular_risk_ingredient"] = df[ING_COL].apply(lambda t: any_kw(t, CARDIO_RISK_KEYWORDS))
 
-    # --- Your numeric features (normalized) ---
+    # Numeric features (normalized)
     out["number_of_ingredients_norm"] = minmax_norm(num_ingredients)
     out["number_of_additives_norm"]   = minmax_norm(num_additives)
     out["additives_per_ingredient_norm"] = minmax_norm(additives_per_ingredient)
 
-    # === NEW: NOVA-3 targeted features ===
+    # NOVA-3 targeted features
     out["has_cheese_marker"]                = df[ING_COL].apply(lambda t: any_word(t, CHEESE_MARKERS))
 
     # Complexity but not additives: helps distinguish NOVA 3 from 2 & 4
@@ -194,3 +193,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
