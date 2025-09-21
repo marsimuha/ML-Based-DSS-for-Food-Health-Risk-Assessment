@@ -18,7 +18,6 @@ import joblib
 df = pd.read_csv("final dataset.csv")
 
 #  Define input features (X) and target variable (y) 
-# Replace with your actual selected features
 selected_features = ['has_e330','has_e500','has_e202','has_e322','has_colorant','has_sweetener','has_emulsifier','has_added_sugar','has_oil_and_fat','has_carcinogen','has_allergen','has_cardiovascular_risk_ingredient','number_of_ingredients_norm','number_of_additives_norm','additives_per_ingredient_norm','has_cheese_marker','complex_non_additive_score_norm','salt_and_food_combo',
 ]
 
@@ -56,5 +55,6 @@ plt.title("Confusion Matrix - Logistic Regression")
 plt.tight_layout()
 plt.savefig("logreg_confusion_matrix.png")
 plt.show()
+
 
 joblib.dump(model, "final_logreg_model.joblib")
