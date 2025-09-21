@@ -53,7 +53,7 @@ Logistic Regression (selected for final deployment)
 
 Decision Tree
 
-Neural Network (Feedforward MLP)
+Neural Network 
 
 Evaluation:
 All models were trained using 10-fold cross-validation and evaluated on Accuracy, Precision, Recall, and F1-score.
