@@ -1,6 +1,6 @@
 This repository contains the full implementation and dataset for a Bachelor’s thesis project titled:
 
-"Developing a Machine Learning-Based Decision Support System for Food Health Risk Assessment through the NOVA Classification"
+"Developing a Machine Learning-Based Decision Support System for Food Health Risk Assessment using the NOVA Classification"
 
 📌 Project Overview
 
@@ -56,7 +56,7 @@ Decision Tree
 Neural Network 
 
 Evaluation:
-All models were trained using 10-fold cross-validation and evaluated on Accuracy, Precision, Recall, and F1-score.
+All models were evaluated on Accuracy, Precision, Recall, and F1-score.
 
 Best model: Logistic Regression (95% accuracy, consistent generalization)
 
