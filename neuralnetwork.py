@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Load your dataset
+# Load dataset
 df = pd.read_csv("Final Dataset.csv")
 
 # Clean column names
@@ -56,3 +56,4 @@ plt.ylabel("True")
 plt.title("Confusion Matrix - Neural Network")
 plt.tight_layout()
 plt.show()
+
